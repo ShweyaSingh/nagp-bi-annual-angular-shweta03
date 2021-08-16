@@ -1,0 +1,61 @@
+<div class="card m-4">
+    <div class="card-header">
+      <h5>Patient registration</h5>
+    </div>
+    <div class="card-body" [formGroup]="patientForm">
+      <div class="row mb-3">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="email"
+            [ngClass]="{
+              'is-invalid':
+                (patientForm?.get('email')?.touched ||
+                  patientForm?.get('email')?.dirty) &&
+                !patientForm?.get('email')?.valid,
+              'is-valid': patientForm?.get('email')?.valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="patientForm?.get('email')?.errors?.required">
+              Email is required
+            </span>
+            <span *ngIf="patientForm?.get('email')?.errors?.email">
+              Email invaild
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="password"
+            [ngClass]="{
+              'is-invalid':
+                (patientForm?.get('password')?.touched ||
+                  patientForm?.get('password')?.dirty) &&
+                !patientForm?.get('password')?.valid,
+              'is-valid': patientForm?.get('password')?.valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="patientForm?.get('password')?.errors?.required">
+              Password is required
+            </span>
+            <span *ngIf="patientForm?.get('password')?.errors?.minlength">
+              Minimum length is
+            </span>
+          </span>
+        </div>
+      </div>
+      <button (click)="login()" class="btn btn-primary">Register</button>
+    </div>
+  </div>
+  
